@@ -10,29 +10,45 @@ execute:
 
 From: https://r-graph-gallery.com/2-two-histograms-with-melt-colors.html
 
-### Things I want to do
+### Things I did
 
 * change colors of species
-* make bars wider
+* change species, titles, axis
+* Increased font size of x and y axis
+* Increased font size and wrap title
+* Made tick marks face inward and on both sides
+
 
 
 ```{r}
 
 #Create data
 set.seed(1)
-Ixos=rnorm(4000 , 120 , 30)     
-Primadur=rnorm(4000 , 200 , 30) 
+Avicennia=rnorm(4000 , 100 , 30)     
+Rhizophora=rnorm(4000 , 200 , 30) 
+
+# Set the global graphical parameters to adjust the font size. cex.lab is label and cex.main is title
+par(cex.lab = 1.25, cex.main = 1.4, tcl = 0.5) 
+
+# Wrap the title text
+wrapped_title <- strwrap("Height difference of Avicennia g.\nand Rhizophora m. saplings", width = 40)
  
+# Set up the plotting area with mfrow
+par(mfrow = c(1, 1))
+
 # First distribution
-hist(Ixos, breaks=30, xlim=c(0,300), col=rgb(1,0,0,0.5), xlab="height", 
-     ylab="nbr of plants", main="distribution of height of 2 durum wheat varieties" )
+hist(Avicennia, breaks=30, xlim=c(0,300), col=rgb(144/255,207/255,171/255,0.75), xlab="Height (mm)", 
+     ylab="Number of Plants", main= wrapped_title)
 
 # Second with add=T to plot on top
-hist(Primadur, breaks=30, xlim=c(0,300), col=rgb(0,0,1,0.5), add=T)
+hist(Rhizophora, breaks=30, xlim=c(0,300), col=rgb(200/255, 162/255, 200/255,0.75), add=T)
+
+# Add y-axis tick marks on the right side and remove labels from right side y axis
+axis(side = 4, labels = FALSE)
 
 # Add legend
-legend("topright", legend=c("Ixos","Primadur"), col=c(rgb(1,0,0,0.5), 
-     rgb(0,0,1,0.5)), pt.cex=2, pch=15 )
+legend("topright", legend=c("Avicennia","Rhizophora"), col=c(rgb(144/255,207/255,171/255,0.75), 
+     rgb(200/255, 162/255, 200/255,0.75)), pt.cex=2, pch=15 )
 
 ```
 
