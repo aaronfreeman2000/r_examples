@@ -8,7 +8,7 @@
 
 <meta name="author" content="Aaron Freeman">
 
-<title>Blog notes</title>
+<title>R Blogger notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,9 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#there-are-3-components-to-a-quarto-document" id="toc-there-are-3-components-to-a-quarto-document" class="nav-link active" data-scroll-target="#there-are-3-components-to-a-quarto-document">There are 3 components to a Quarto document</a></li>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#hypothesis-testing-in-r-elevating-your-data-analysis-skills" id="toc-hypothesis-testing-in-r-elevating-your-data-analysis-skills" class="nav-link active" data-scroll-target="#hypothesis-testing-in-r-elevating-your-data-analysis-skills">“Hypothesis Testing in R: Elevating Your Data Analysis Skills”</a></li>
   </ul>
 </nav>
 </div>
@@ -90,7 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog notes</h1>
+<h1 class="title">R Blogger notes</h1>
 </div>
 
 
@@ -113,43 +111,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="there-are-3-components-to-a-quarto-document" class="level2">
-<h2 class="anchored" data-anchor-id="there-are-3-components-to-a-quarto-document">There are 3 components to a Quarto document</h2>
+<section id="hypothesis-testing-in-r-elevating-your-data-analysis-skills" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-in-r-elevating-your-data-analysis-skills">“Hypothesis Testing in R: Elevating Your Data Analysis Skills”</h2>
+<pre><code>    Posted on January 18, 2024 by Numbers around us in R bloggers
+    https://www.r-bloggers.com/2024/01/hypothesis-testing-in-r-elevating-your-data-analysis-skills/</code></pre>
+<section id="summary" class="level4">
+<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+<p>This article posted in R Bloggers is a general guide to making sure quality content is created from the work done in R. It goes through the recommended steps to ensure data analysis is done scientifically. It also provides general advice on how to make the workload more manageable. The article also highlights that there are several different types of data analysis, and the examples provided from this one are quite basic.</p>
+</section>
+<section id="takeaways-from-the-example" class="level4">
+<h4 class="anchored" data-anchor-id="takeaways-from-the-example">Takeaways from the Example</h4>
+<ul>
+<li>Use fake data to prove your statistical method and analysis is valid.</li>
+</ul>
 <ol type="1">
-<li>the YML header:
-<ul>
-<li>YML = yet another markup language</li>
-<li>can define table of contents, etc.</li>
-</ul></li>
-<li>Prose aka text
-<ul>
-<li>we can make text <strong>bold</strong></li>
-<li>we can make text <em>italic</em></li>
-<li>and on and on</li>
-</ul></li>
-<li>Code chunks. There is where we code.</li>
+<li>Set up the environment (This example uses the easystats package)</li>
 </ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"easystats"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(easystats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Understand what type of dataset you are working with. This example uses PlantGrowth which is an R dataset.</li>
+</ol>
+<p>Here is what some example code would look like:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasets)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"PlantGrowth"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PlantGrowth)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  weight group</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   <span class="fl">4.17</span>  ctrl</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   <span class="fl">5.58</span>  ctrl</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   <span class="fl">5.18</span>  ctrl</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>   <span class="fl">6.11</span>  ctrl</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>   <span class="fl">4.50</span>  ctrl</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>   <span class="fl">4.61</span>  ctrl</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(PlantGrowth)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>     weight       group   </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">3.590</span>   ctrl<span class="sc">:</span><span class="dv">10</span>  </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>st Qu.<span class="sc">:</span><span class="fl">4.550</span>   trt1<span class="sc">:</span><span class="dv">10</span>  </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">5.155</span>   trt2<span class="sc">:</span><span class="dv">10</span>  </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">5.073</span>            </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>rd Qu.<span class="sc">:</span><span class="fl">5.530</span>            </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">6.310</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li><p>Formulate the Hypotheses. For this example we are using the null hypothesis. Meaning no significant difference between the two groups.</p></li>
+<li><p>Conducting the Hypothesis Test</p></li>
+</ol>
+<p>Since we are comparing two of the same groups with different weights and testing for null hypothesis we will use the t-test.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(weight <span class="sc">~</span> group, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> PlantGrowth, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">subset =</span> group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ctrl"</span>, <span class="st">"trt1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Reporting Results</li>
+</ol>
+<p>This guide uses a report package to provide a detailed interpretation of the results:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(result)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Effect sizes were labelled following Cohen<span class="st">'s (1988) recommendations.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">The Welch Two Sample t-test testing the difference of weight by group (mean in group ctrl = 5.03, mean in group trt1 =</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">4.66) suggests that the effect is positive, statistically not significant, and medium (difference = 0.37, 95% CI [-0.29,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">1.03], t(16.52) = 1.19, p = 0.250; Cohen'</span>s d <span class="ot">=</span> <span class="fl">0.59</span>, <span class="dv">95</span>% CI [<span class="sc">-</span><span class="fl">0.41</span>, <span class="fl">1.56</span>]<span class="er">)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="sc">-------------------------------------------------------</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(result)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>Welch Two Sample t<span class="sc">-</span>test</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>data<span class="sc">:</span>  weight by group</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>t <span class="ot">=</span> <span class="fl">1.1913</span>, df <span class="ot">=</span> <span class="fl">16.524</span>, p<span class="sc">-</span>value <span class="ot">=</span> <span class="fl">0.2504</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>alternative hypothesis<span class="sc">:</span> true difference <span class="cf">in</span> means between group ctrl and group trt1 is not equal to <span class="dv">0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="dv">95</span> percent confidence interval<span class="sc">:</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a> <span class="sc">-</span><span class="fl">0.2875162</span>  <span class="fl">1.0295162</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>sample estimates<span class="sc">:</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>mean <span class="cf">in</span> group ctrl mean <span class="cf">in</span> group trt1 </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>             <span class="fl">5.032</span>              <span class="fl">4.661</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Interpreting the Results</li>
+</ol>
+<p>Since this is a null hypothesis and we are using the t-test. We will look to see if our p-value is above 0.05 to fail to reject the null hypothesis.</p>
+<ol start="7" type="1">
+<li>Visualization</li>
+</ol>
+<p>The guide recommends using the ggplot package to create graphs. I like this package more and more I see it, however there is also base R graphs on the R graph gallery website. This is the boxplot they used</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(PlantGrowth, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Plant Growth by Treatment Group"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Group"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Weight"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
-</section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
 </section>
 
 </main>

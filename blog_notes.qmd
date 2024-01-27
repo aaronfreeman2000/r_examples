@@ -1,5 +1,5 @@
 ---
-title: "Blog notes"
+title: "R Blogger notes"
 author: "Aaron Freeman"
 format:
   html:
@@ -7,34 +7,107 @@ format:
 editor: source
 ---
 
-## There are 3 components to a Quarto document
 
-1. the YML header:
-    * YML = yet another markup language
-    * can define table of contents, etc.
-2. Prose aka text
-    * we can make text **bold**
-    * we can make text *italic*
-    * and on and on
-3. Code chunks. There is where we code.
 
-## Quarto
+## "Hypothesis Testing in R: Elevating Your Data Analysis Skills"
+        Posted on January 18, 2024 by Numbers around us in R bloggers
+        https://www.r-bloggers.com/2024/01/hypothesis-testing-in-r-elevating-your-data-analysis-skills/
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+#### Summary
+This article posted in R Bloggers is a general guide to making sure quality content is created from the work done in R. It goes through the recommended steps to ensure data analysis is done scientifically. It also provides general advice on how to make the workload more manageable. The article also highlights that there are several different types of data analysis, and the examples provided from this one are quite basic.
 
-## Running Code
+        
+#### Takeaways from the Example
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+* Use fake data to prove your statistical method and analysis is valid.
+1. Set up the environment (This example uses the easystats package)
 
-```{r}
-1 + 1
+```r
+install.packages("easystats")
+library(easystats)
 ```
 
-You can add options to executable code like this
+2. Understand what type of dataset you are working with. This example uses PlantGrowth which is an R dataset.
 
-```{r}
-#| echo: false
-2 * 2
+Here is what some example code would look like:
+
+```r
+library(datasets)
+data("PlantGrowth")
+head(PlantGrowth)
+  weight group
+1   4.17  ctrl
+2   5.58  ctrl
+3   5.18  ctrl
+4   6.11  ctrl
+5   4.50  ctrl
+6   4.61  ctrl
+summary(PlantGrowth)
+     weight       group   
+ Min.   :3.590   ctrl:10  
+ 1st Qu.:4.550   trt1:10  
+ Median :5.155   trt2:10  
+ Mean   :5.073            
+ 3rd Qu.:5.530            
+ Max.   :6.310  
+ ```
+ 
+ 3. Formulate the Hypotheses. For this example we are using the null hypothesis. Meaning no significant difference between the two groups.
+ 
+ 4. Conducting the Hypothesis Test
+ 
+ Since we are comparing two of the same groups with different weights and testing for null hypothesis we will use the t-test. 
+ 
+ ```r
+ result <- t.test(weight ~ group, 
+data = PlantGrowth, 
+subset = group %in% c("ctrl", "trt1"))
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+5. Reporting Results
+
+This guide uses a report package to provide a detailed interpretation of the results:
+
+```r
+report(result)
+
+Effect sizes were labelled following Cohen's (1988) recommendations.
+
+The Welch Two Sample t-test testing the difference of weight by group (mean in group ctrl = 5.03, mean in group trt1 =
+4.66) suggests that the effect is positive, statistically not significant, and medium (difference = 0.37, 95% CI [-0.29,
+1.03], t(16.52) = 1.19, p = 0.250; Cohen's d = 0.59, 95% CI [-0.41, 1.56])
+
+-------------------------------------------------------
+
+print(result)
+
+Welch Two Sample t-test
+
+data:  weight by group
+t = 1.1913, df = 16.524, p-value = 0.2504
+alternative hypothesis: true difference in means between group ctrl and group trt1 is not equal to 0
+95 percent confidence interval:
+ -0.2875162  1.0295162
+sample estimates:
+mean in group ctrl mean in group trt1 
+             5.032              4.661 
+```
+
+6. Interpreting the Results
+
+Since this is a null hypothesis and we are using the t-test. We will look to see if our p-value is above 0.05 to fail to reject the null hypothesis. 
+
+7. Visualization
+
+The guide recommends using the ggplot package to create graphs. I like this package more and more I see it, however there is also base R graphs on the R graph gallery website. This is the boxplot they used
+
+```r
+library(ggplot2)
+ggplot(PlantGrowth, aes(x = group, y = weight)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Plant Growth by Treatment Group",
+       x = "Group",
+       y = "Weight")
+```
+
