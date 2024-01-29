@@ -1,0 +1,28 @@
+---
+title: "Randy's Reactions"
+format:
+  html:
+    toc: true
+editor: source
+---
+
+## Blog Notes
+
+Aaron-super cool.  I know I learned about some new packages here to check out!  How did this feel for you?  Are you happy with your notes and the blog you chose?  
+
+A few things I noticed to change next time:
+
+1. Put all package loads in one code chunk at the top, followed by reading in data, then get to the rest of your work.  For a short Quarto without much code, this is not much of an issue, but when running long reports/code, with all of the warnings and messages you might not even notice data is missing or a package didn't load.  It's called having the 'dependencies' run first, or the making sure that the objects that the report is 'dependent' on work.  You will set that chuck to hide output, warnings and messages. Also-read about how you could implement one or more of these for all chunks in the document by editing the YAML header.
+
+* #| warning: false
+* #| include: false
+* #| message: false
+
+
+2. Your code chucks start with 'r', which honestly I didn't understand.  I will need to read about that.  To get the final chart to run I had to use "{r}".
+
+3. I was intrigued with the comment about 'fake data' but didn't see more info.  I'm curious!
+
+THANK YOU!
+
+

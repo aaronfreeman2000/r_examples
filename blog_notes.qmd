@@ -8,6 +8,12 @@ editor: source
 ---
 
 
+## Randy's Reactions
+
+Aaron-super cool.  I know I learned about some new packages here to check out!  How did this feel for you?  Are you happy with your notes and the blog you chose?
+
+
+
 
 ## "Hypothesis Testing in R: Elevating Your Data Analysis Skills"
         Posted on January 18, 2024 by Numbers around us in R bloggers
@@ -102,6 +108,18 @@ Since this is a null hypothesis and we are using the t-test. We will look to see
 The guide recommends using the ggplot package to create graphs. I like this package more and more I see it, however there is also base R graphs on the R graph gallery website. This is the boxplot they used
 
 ```r
+library(ggplot2)
+ggplot(PlantGrowth, aes(x = group, y = weight)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Plant Growth by Treatment Group",
+       x = "Group",
+       y = "Weight")
+```
+
+**Randy wanted to see the chart :) **
+
+```{r}
 library(ggplot2)
 ggplot(PlantGrowth, aes(x = group, y = weight)) +
   geom_boxplot() +
