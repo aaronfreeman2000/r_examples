@@ -13,6 +13,8 @@
 install.packages('pacman')
 library(pacman)
 
+install.packages('matrix')
+
 p_load(chorddiag, htmlwidgets, tidyverse)
 
 
