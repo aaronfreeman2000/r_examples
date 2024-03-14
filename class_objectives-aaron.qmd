@@ -32,14 +32,14 @@ Over the course it is expected you will:
 1.  Get data from collaborators and/or mock up data. Explore potential stats framework, document and try. be aware of developing bias.
 2.  Make sure we get a workflowR site done
 3.  Use R for mapping and assessing elevation data
-    * consider ArcGIS-R bridge
-    * may use LiDAR data
-    * make sure to use terra package (not 'raster' as it is being deprecated) when doing spatial work in R
-    
-    
+    -   consider ArcGIS-R bridge
+    -   may use LiDAR data
+    -   make sure to use terra package (not 'raster' as it is being deprecated) when doing spatial work in R
+
 ## Progress tracking
 
-* met week of February 6, 2024.  
-    
-    
-    
+-   met week of February 6, 2024.
+
+## Reflection
+
+As of today March 14th, I have created my workflowr website and given a description of my thesis. This includes several images. Additionally, I want to have a section that talks about the prior work I have done on other projects and jobs. Lastly, I am working with remote sensing imagery to do classifications of a wetland in Florida. I intend to do analysis of the accuracy of this map, as well as, create a gain/loss map showing how the landscape has changed. Unfortunately, these ideas remain a little pie in the sky, but I have taken the appropriate steps toward implementing them. As of right now I see my grade being B+ to an A-, contingent on how the data comes out.
