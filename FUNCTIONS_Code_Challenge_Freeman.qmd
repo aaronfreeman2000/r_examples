@@ -3,12 +3,7 @@ title: "Code_Challenege_Functions"
 format: html
 editor: visual
 ---
-
-## Randy's comments
-
-Aaron, your code doesn't work. Please fix. Did you run this?
-
-Once you fix and successfully render send back to me.
+## FIXED VERSION
 
 ## This is the breakdown of the functions used to make the change in ecosystem graph from the coding challenge.
 
