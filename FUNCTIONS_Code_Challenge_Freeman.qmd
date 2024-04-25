@@ -3,6 +3,15 @@ title: "Code_Challenege_Functions"
 format: html
 editor: visual
 ---
+
+# Randy's comments
+
+* thanks for fixing this-worked without issue this time.  Thing of beauty.
+* now please add a reflection about this experience, or let me know where it is if I am missing it.
+* Nice idea to take a 'functions first' approach with your commentary
+* now that you have this in a reproducible format (everything works without any modifications from me), I hope you will help someone else along the way with these functions and share your code.
+
+
 ## FIXED VERSION
 
 ## This is the breakdown of the functions used to make the change in ecosystem graph from the coding challenge.
